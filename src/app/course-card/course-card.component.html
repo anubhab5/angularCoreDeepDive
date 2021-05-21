@@ -1,0 +1,47 @@
+<div
+  class="course-card"
+  *ngIf="course"
+  [ngClass]="{ beginner: course.category === 'BEGINNER' }"
+>
+  <!-- <div
+  class="course-card"
+  *ngIf="course"
+  [ngClass]="{'beginner': cardIndex%2 ==0 , 'advanced': cardIndex%2 !=0}"
+> -->
+  <div class="course-title">
+    {{ (cardIndex + 1 || " ") + course.description }}
+  </div>
+  <!-- Code commented because of Content Projection demo -->
+  <!-- <img width="300" alt="Angular Logo" [src]="course.iconUrl" /> -->
+
+  <!-- For content projection we need ng-content -->
+  <!-- Syntax -->
+  <!-- <ng-content></ng-content> -->
+
+  <!-- Content projection of a specific item can be done by using the select option in ng-contnet -->
+  <!-- selection on the basis of tag; Here the tag is img -->
+  <!-- <ng-content select="img"></ng-content> -->
+  <!-- <ng-content select=".course-image" ></ng-content> -->
+  <ng-content select="course-image" ></ng-content>
+  <!-- selection on the basis of class; here the class is .course-description -->
+  <ng-content select=".course-description"></ng-content>
+
+  <!-- For projecting remaining stuffs/ items we don't provide tag name or class name -->
+  <ng-content></ng-content>
+
+  <!-- Code commented because of Content Projection demo -->
+  <!-- <div class="course-description">
+    {{ course.longDescription }}
+  </div> -->
+
+  <div class="course-category" [ngSwitch]="course.category">
+    <div class="category">
+      <ng-container *ngSwitchCase="'BEGINNER'">BEGINNER</ng-container>
+      <ng-container *ngSwitchCase="'INTERMEDIATE'">Intermediate</ng-container>
+      <ng-container *ngSwitchCase="'ADVANCED'">Advance</ng-container>
+      <ng-container *ngSwitchDefault>ALL</ng-container>
+    </div>
+  </div>
+
+  <button (click)="onCourseViewed()">View Course</button>
+</div>

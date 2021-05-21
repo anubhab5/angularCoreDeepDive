@@ -1,0 +1,57 @@
+<div class="top-menu">
+  <img
+    #imgRef
+    class="logo"
+    src="https://angular-academy.s3.amazonaws.com/main-logo/main-page-logo-small-hat.png"
+  />
+</div>
+
+<!-- <h2>{{ngrxCourse.description}}</h2> -->
+
+<div class="courses" *ngIf="courses[0] as course">
+  <!-- <course-card
+    *ngFor="let course of courses; index as i; first as isFirst; last as isLast; even as isEven; odd as isOdd"
+    [class.is-even]="isEven"
+    [class.is-odd]="isOdd"
+    [class.is-first]="isFirst"
+    [class.is-last]="isLast"
+    (courseSelected)="onCardClicked($event)"
+    [cardIndex]="i"
+    [course]="course"
+  ></course-card> -->
+
+  <!-- VIEW CHILDREN DEMO -->
+  <!-- <course-card
+  *ngFor="let course of courses; index as i; first as isFirst; last as isLast; even as isEven; odd as isOdd"
+  (courseSelected)="onCardClicked($event)"
+  [cardIndex]="i"
+  [course]="course"
+></course-card> -->
+
+  <!-- VIEW CHILD DEMO -->
+  <!-- <course-card #cardRef
+(courseSelected)="onCardClicked($event)"
+[course]="courses[0]"
+[cardIndex]="''"
+></course-card> -->
+
+  <!-- CONTENT CHILD -->
+  <course-card
+    (courseSelected)="onCardClicked($event)"
+    [course]="course"
+    [cardIndex]="''"
+  >
+
+  <!-- <div class="course-image">
+    <img width="300" alt="Angular Logo"  [src]='course.iconUrl' alt="" #courseImage>
+  </div> -->
+  <course-image [src]='course.iconUrl'></course-image>
+
+  <div class="course-description">
+    {{ course.longDescription }}
+  </div>
+
+  <h5>Total Units: 5</h5>
+
+</course-card>
+</div>
